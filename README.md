@@ -1,4 +1,4 @@
-<div align="center">
+
 # Model Reduction of Constrained Mechanical Systems
 ### via Spectral Submanifolds (SSMs)
 License: MIT
@@ -69,4 +69,4 @@ This study relies on the fundamental advancements in spectral submanifold theory
  3. **Shaw, S. W., & Pierre, C. (1993).** *Normal modes for non-linear vibratory systems.* Journal of Sound and Vibration, 164(1), 85-124.
 <div align="center">
 <p>Distributed under the MIT License.</p>
-</div>
+
