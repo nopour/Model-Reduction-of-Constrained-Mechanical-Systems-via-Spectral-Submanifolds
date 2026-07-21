@@ -9,8 +9,8 @@ Mechanical systems with algebraic constraints are traditionally formulated as Di
 This repository explores the application of **Spectral Submanifolds (SSMs)** to descriptor-form DAEs. By parameterizing invariant manifolds tangent to linear spectral subspaces, reduced-order models (ROMs) composed purely of ODEs can be constructed while preserving the underlying phase space geometry.
 ### Key Concepts Covered
  * **Descriptor-Form Parameterization:** Direct handling of index-3 DAEs without explicit index reduction or coordinate partitioning.
- * **1:2 Internal Resonance:** Demonstration of why classical 2D invariant manifolds break down during commensurate frequency ratios (w_2 \approx 2w_1) due to small divisors, and how a 4D SSM master subspace resolves the issue.
- * **Constraint Force Extraction:** direct recovery of dynamic Lagrange multipliers (\lambda) from the manifold embedding.
+ * **1:2 Internal Resonance:** Demonstration of why classical 2D invariant manifolds break down during commensurate frequency ratios (w₂ ≈ 2w₁) due to small divisors, and how a 4D SSM master subspace resolves the issue.
+ * **Constraint Force Extraction:** Direct recovery of dynamic Lagrange multipliers (λ) from the manifold embedding.
  * **Forced Response & Backbones:** Analytic approximation of Forced Response Curves (FRCs) and backbone surfaces up to high Taylor expansion orders.
 ## 🗺 Method Overview
 The reduction pipeline from a constrained DAE system to reduced dynamics is summarized below:
@@ -41,7 +41,7 @@ M \ddot{x} + C \dot{x} + K x + f_{nl}(x,\dot{x}) + G(x)^T \mu = \epsilon f_{ext}
 ```math
 g(x) = 0
 ```
-By defining the augmented state vector z = (x, \dot{x}, \mu)^T, the system is written in first-order descriptor form:
+By defining the augmented state vector z = (x, ẋ, μ)ᵀ, the system is written in first-order descriptor form:
 ```math
 B \dot{z} = A z + F(z) + \epsilon F_{ext}(z, \Omega t)
 ```
@@ -50,11 +50,11 @@ where the linear matrices A and B are defined as:
 A = \begin{bmatrix} -K & 0 & -G_0^T \\ 0 & M & 0 \\ G_0 & 0 & 0 \end{bmatrix}, \quad B = \begin{bmatrix} C & M & 0 \\ M & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
 ```
 ### 2. Invariance Equation
-The autonomous SSM embedding W_0(p) and reduced vector field R_0(p) satisfy the invariance equation:
+The autonomous SSM embedding W₀(p) and reduced vector field R₀(p) satisfy the invariance equation:
 ```math
 B D W_0(p) R_0(p) = A W_0(p) + F(W_0(p))
 ```
-Expanding W_0(p) and R_0(p) as Taylor series yields a sequence of linear cohomological equations at each order k \ge 2.
+Expanding W₀(p) and R₀(p) as Taylor series yields a sequence of linear cohomological equations at each order k ≥ 2.
 ## 🧪 Benchmark System: Hyperbolic Paraboloid Oscillator
 The theory is evaluated on a 3-DOF oscillator constrained to slide on a hyperbolic paraboloid surface:
 ```math
@@ -74,20 +74,20 @@ g(x) = x_3 - \alpha x_1^2 + \beta x_2^2 = 0
 ```
 ### Comparison: 2D vs. 4D SSM Formulation
 > [!NOTE]
-> **2D Classical Subspace Breakdown:** > When w_2 \approx 2w_1, solving the 2D cohomological equation requires inverting the matrix [(2\lambda_1)B - A]. Because 2\lambda_1 \approx \lambda_3, this matrix becomes singular, leading to divergent Taylor series expansions and small-divisor problems.
+> **2D Classical Subspace Breakdown:** > When w₂ ≈ 2w₁, solving the 2D cohomological equation requires inverting the matrix [(2λ₁)B - A]. Because 2λ₁ ≈ λ₃, this matrix becomes singular, leading to divergent Taylor series expansions and small-divisor problems.
 > 
 > [!IMPORTANT]
-> **4D SSM Hyper-Manifold Resolution:** > By choosing a 4D master spectral subspace \mathcal{E}_{4D} = \text{span}\{v_1, \bar{v}_1, v_2, \bar{v}_2\}, the internal resonance interaction is contained inside the master subspace. Non-resonance conditions are satisfied for all spectral values outside \mathcal{E}_{4D}, allowing stable computation of the reduced model.
+> **4D SSM Hyper-Manifold Resolution:** > By choosing a 4D master spectral subspace E₄D = span{v₁, v₁̄, v₂, v₂̄}, the internal resonance interaction is contained inside the master subspace. Non-resonance conditions are satisfied for all spectral values outside E₄D, allowing stable computation of the reduced model.
 > 
 ## 📊 Verification Metrics
-Error comparison between a 4D SSM model (\mathcal{O}(9)) and direct index-1 stabilized DAE integration:
+Error comparison between a 4D SSM model (O(9)) and direct index-1 stabilized DAE integration:
 
-| State Variable | Max Absolute Error | RMS Error | Relative L2 Norm |
+| State Variable | Max Absolute Error | RMS Error | Relative L₂ Norm |
 | :--- | :--- | :--- | :--- |
-| **x_1 (Mode 1)** | 1.3416 \times 10^{-6} | 7.1934 \times 10^{-7} | 1.4296 \times 10^{-3} |
-| **x_2 (Resonant Mode 2)** | 4.6857 \times 10^{-9} | 2.4396 \times 10^{-9} | 1.7581 \times 10^{-6} |
-| **x_3 (Constrained Axis)** | 1.7929 \times 10^{-7} | 5.1416 \times 10^{-8} | 1.7525 \times 10^{-5} |
-| **\lambda (Constraint Force)** | 1.0988 \times 10^{-5} | 1.1234 \times 10^{-6} | 1.8474 \times 10^{-5} |
+| **x₁ (Mode 1)** | 1.3416 × 10⁻⁶ | 7.1934 × 10⁻⁷ | 1.4296 × 10⁻³ |
+| **x₂ (Resonant Mode 2)** | 4.6857 × 10⁻⁹ | 2.4396 × 10⁻⁹ | 1.7581 × 10⁻⁶ |
+| **x₃ (Constrained Axis)** | 1.7929 × 10⁻⁷ | 5.1416 × 10⁻⁸ | 1.7525 × 10⁻⁵ |
+| **λ (Constraint Force)** | 1.0988 × 10⁻⁵ | 1.1234 × 10⁻⁶ | 1.8474 × 10⁻⁵ |
 
 ## 📚 References
  1. G. Haller and S. Ponsioen, *Nonlinear normal modes and spectral submanifolds: existence, uniqueness and use in model reduction*, Nonlinear Dynamics, 86(3), 1493–1534 (2016).
