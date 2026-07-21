@@ -1,0 +1,1 @@
+# Model-Reduction-of-Constrained-Mechanical-Systems-via-Spectral-Submanifolds
