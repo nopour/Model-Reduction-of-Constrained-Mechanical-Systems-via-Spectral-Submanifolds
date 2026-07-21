@@ -1,7 +1,12 @@
 # Model Reduction of Constrained Mechanical Systems via Spectral Submanifolds
 License: MIT
+
 MATLAB
+
 SSMTool Integration
+
+(Draft)
+
 > **Overview:** A draft study on exact model reduction for mechanical systems subject to holonomic algebraic configuration constraints, based on Spectral Submanifold (SSM) theory developed by Prof. George Haller's group (ETH Zürich).
 > 
 ## 📌 Summary
